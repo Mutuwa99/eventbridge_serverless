@@ -1,0 +1,42 @@
+service: ec2-scheduler-python
+
+frameworkVersion: '4.20.2'
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-west-1
+  timeout: 30
+  memorySize: 128
+  environment:
+    INSTANCE_IDS: i-04af8d3a5df474f40
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - ec2:StartInstances
+            - ec2:StopInstances
+            - ec2:DescribeInstances
+          Resource: '*'
+
+functions:
+  startInstances:
+    handler: handler.start_instances
+    events:
+      - eventBridge:
+          schedule: cron(0 9 * * ? *)  # 9 AM UTC daily
+  stopInstances:
+    handler: handler.stop_instances
+    events:
+      - eventBridge:
+          schedule: cron(0 17 * * ? *) # 5 PM UTC daily
+
+plugins:
+  - serverless-python-requirements
+  - serverless-plugin-log-retention
+
+custom:
+  logRetentionInDays: 7
+  pythonRequirements:
+    dockerizePip: true

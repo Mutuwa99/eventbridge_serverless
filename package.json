@@ -1,0 +1,16 @@
+{
+  "name": "ec2-schedular",
+  "version": "1.0.0",
+  "description": "<!-- title: 'AWS Python Scheduled Cron example in Python' description: 'This is an example of creating a function that runs as a cron job using the serverless ''schedule'' event.' layout: Doc framework: v4 platform: AWS language: Python priority: 2 authorLink: 'https://github.com/rupakg' authorName: 'Rupak Ganguly' authorAvatar: 'https://avatars0.githubusercontent.com/u/8188?v=4&s=140' -->",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-plugin-log-retention": "^2.1.0",
+    "serverless-python-requirements": "^6.1.2"
+  }
+}
